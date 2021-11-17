@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "child_process": "^1.0.2",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-zip": "^5.1.0"
