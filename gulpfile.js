@@ -6,8 +6,8 @@ const cp = require("child_process");
 
 const PATH_OUTPUT_DEFAULT = "C:/dist";
 const OUTPUT_NAME_FOLDER = "tempBuildRelease";
-const PATH_WEB_FOLDER = "C:/";
-const NAME_PROJECT = "Project";
+let PATH_WEB_FOLDER = "";
+let NAME_PROJECT = "";
 
 const ARCHIVES_NAME_REMOVE = [
   "appsettings.Development.json",
@@ -85,9 +85,25 @@ const zipFolder = async () => {
 exports.homolog = gulp.series(clean, build, cleanUnecessaryFiles, zipFolder);
 
 exports.release = (done) => {
-  if (arg.a == "homolog") {
+  if (arg.p || arg.project) {
+    var project = arg.p || arg.project;
+    switch (project) {
+      case "sgc":
+        PATH_WEB_FOLDER = "C:/workspace/mrn-sgc/MRN-Contratos/srv/Web";
+        NAME_PROJECT = "SGC";
+        break;
+    }
+  } else {
+    console.log("Serviço nao foi espeificado");
+    return;
+  }
+
+  if (arg.e == "homolog" || arg.enviroment == "homolog") {
     console.log("Gerando Release Homologação");
     exports.homolog();
     done();
+  } else {
+    console.log("O ambiente nao foi espeificado.");
+    return;
   }
 };
