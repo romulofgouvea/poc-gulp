@@ -3,5 +3,10 @@
 Gerando uma release
 
 ```
-npx gulp release --a homolog
+npx gulp release --p <projeto> --e <ambiente>
+```
+
+Exemplo: 
+```
+npx gulp release --p sgc --e homolog
 ```
